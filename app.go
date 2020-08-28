@@ -211,7 +211,7 @@ func (a *App) RemoveCommand(name string) {
 func (a *App) removeCommand(name string) {
 	err := a.commands.RemoveCommand(name)
 	if err != nil {
-		fmt.Printf("%v", err)
+		panic(err)
 	}
 }
 
