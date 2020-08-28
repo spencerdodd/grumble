@@ -25,7 +25,9 @@
 package grumble
 
 import (
+	"fmt"
 	"sort"
+	"errors"
 )
 
 // Commands collection.
@@ -42,6 +44,17 @@ func (c *Commands) Add(cmd *Command) {
 // All returns a slice of all commands.
 func (c *Commands) All() []*Command {
 	return c.list
+}
+
+// Remove removes a command from the slice by name
+func (c *Commands) RemoveCommand(name string) error {
+	for idx, cmd := range c.list {
+		if cmd.Name == name {
+			c.list = append(c.list[:idx], c.list[idx+1:]...)
+			return nil
+		}
+	}
+	return errors.New(fmt.Sprintf("could not find command with name (%v) in commands", name))
 }
 
 // Get the command by the name. Aliases are also checked.

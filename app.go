@@ -202,6 +202,19 @@ func (a *App) Stderr() io.Writer {
 	return os.Stderr
 }
 
+// RemoveCommands removes a command by name
+func (a *App) RemoveCommand(name string) {
+	a.removeCommand(name)
+}
+
+// removeCommands removes a command by name
+func (a *App) removeCommand(name string) {
+	err := a.commands.RemoveCommand(name)
+	if err != nil {
+		fmt.Printf("%v", err)
+	}
+}
+
 // AddCommand adds a new command.
 // Panics on error.
 func (a *App) AddCommand(cmd *Command) {
