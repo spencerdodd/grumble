@@ -25,7 +25,7 @@
 package cmd
 
 import (
-	"github.com/desertbit/grumble"
+	"github.com/spencerdodd/grumble"
 )
 
 func init() {
