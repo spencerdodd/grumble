@@ -50,7 +50,7 @@ var CommandSet2 = []*grumble.Command{
 
 func setCommandSet1(a *grumble.App) {
 	fmt.Printf("[*] switching to command set 1 (%v commands)\n", len(CommandSet1))
-	a.RemoveCommand("command2")
+	a.RemoveCommandIfExists("command2")
 	for i := 0; i < len(CommandSet1); i++ {
 		App.AddCommand(CommandSet1[i])
 	}
@@ -58,7 +58,7 @@ func setCommandSet1(a *grumble.App) {
 
 func setCommandSet2(a *grumble.App) {
 	fmt.Printf("[*] switching to command set 2\n", len(CommandSet2))
-	a.RemoveCommand("command1")
+	a.RemoveCommandIfExists("command1")
 	for i := 0; i < len(CommandSet2); i++ {
 		App.AddCommand(CommandSet2[i])
 	}

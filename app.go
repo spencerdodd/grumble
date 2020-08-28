@@ -203,15 +203,30 @@ func (a *App) Stderr() io.Writer {
 }
 
 // RemoveCommands removes a command by name
+// Panics on error
 func (a *App) RemoveCommand(name string) {
 	a.removeCommand(name)
 }
 
 // removeCommands removes a command by name
+// Panics on error
 func (a *App) removeCommand(name string) {
 	err := a.commands.RemoveCommand(name)
 	if err != nil {
 		panic(err)
+	}
+}
+
+// RemoveCommandIfExists removes a command only if exists
+func (a *App) RemoveCommandIfExists(name string) {
+	a.removeCommandIfExists(name)
+}
+
+// RemoveCommandIfExists removes a command only if exists
+func (a *App) removeCommandIfExists(name string) {
+	command := a.commands.Get(name)
+	if command != nil {
+		a.RemoveCommand(name)
 	}
 }
 
